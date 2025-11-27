@@ -40,18 +40,17 @@ print(result)
 df[df['State'] == 'India']['Male (Doses Administered)'].sum()
 n=num['Male (Doses Administered)'].sum()
 
-
+#18
 cat=['district','catogory']
 num=['NumberFloorsofBuilding','price_clean','clean_GrossSquareMeters']
 summary=df.groupby(cat)[num].agg(['count','mean', 'median', 'min', 'max', 'std'])
 
-
+#19
 species_list = ['Iris-setosa', 'Iris-versicolor']
-
 df_filtered = df[df['species'].isin(species_list)]
-
 df_filtered.groupby('species').agg(
     ['sum', 'count', 'std', 'var', 'mean', 'median',
      ('Q1', lambda x: x.quantile(0.25)),
      ('Q3', lambda x: x.quantile(0.75))]
 )
+
