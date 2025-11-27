@@ -1,14 +1,26 @@
+#prac1
 survived_passengers = df[df['Survived'] == 1]
 sorted_by_age = df.sort_values(by="Age")
 d = df.loc[:3].query("Age == 22")
+df.loc[(df['Pclass'] == 3) & (df.index.isin(range(893, 896)))]
+df.sort_values(by=['Pclass','PassengerId'],ascending=[False,True],kind='heapsort',na_position='first',ignore_index=True)
 
-num = df.select_dtypes(include=['int64', 'float64'])
+#prac2
+stats = pd.DataFrame({
+    'min'    : num.min(),
+    'max'    : num.max(),
+    'var'    : num.var(),
+    'std'    : num.std(),
+    'q1'     : num.quantile(0.25),
+    'median' : num.quantile(0.50)
+})
 num.quantile([0.25, 0.50, 0.75])
-
 print(df.var(numeric_only=True))
 
 num = df.select_dtypes(include=['number'])
 print(num.max() - num.min())
+
+
 
 n=num.groupby('State')['First Dose Administered'].sum().where(num['State']!='India')
 n=num.groupby('State')['Second Dose Administered'].sum().where(num['State']!='India')
