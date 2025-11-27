@@ -21,6 +21,21 @@ num = df.select_dtypes(include=['number'])
 print(num.max() - num.min())
 
 
+#13
+import pandas as pd
+
+df = pd.read_csv("Datasets/Covid Vaccine Statewise.csv")
+
+# Select only the required columns
+result = df[['State', 'First Dose Administered']]
+
+# Group state-wise (if same state appears multiple times)
+result = result.groupby('State')['First Dose Administered'].sum()
+
+print(result)
+
+
+
 
 n=num.groupby('State')['First Dose Administered'].sum().where(num['State']!='India')
 n=num.groupby('State')['Second Dose Administered'].sum().where(num['State']!='India')
