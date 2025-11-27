@@ -36,10 +36,9 @@ print(result)
 
 
 
-
-n=num.groupby('State')['First Dose Administered'].sum().where(num['State']!='India')
-n=num.groupby('State')['Second Dose Administered'].sum().where(num['State']!='India')
+#14
 df[df['State'] == 'India']['Male (Doses Administered)'].sum()
+n=num['Male (Doses Administered)'].sum()
 
 
 cat=['district','catogory']
