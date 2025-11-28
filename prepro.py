@@ -90,3 +90,31 @@ df['age_group'] = pd.cut(df['age'],
 
 pd.cut(df['age'], bins=3)
 pd.qcut(df['age'], q=4)
+
+b) Capping (Winsorization)
+df['age'] = df['age'].clip(lower=Q1, upper=Q3)
+
+2. One-Hot Encoding
+df = pd.get_dummies(df, columns=['gender'])
+
+3. Ordinal Encoding
+from sklearn.preprocessing import OrdinalEncoder
+df['size'] = OrdinalEncoder().fit_transform(df[['size']])
+
+
+a) Remove Constant Features
+from sklearn.feature_selection import VarianceThreshold
+df_new = VarianceThreshold().fit_transform(df)
+Simple: Remove columns where all values are same.
+
+b) Correlation-based removal
+df = df.drop(columns=['highly_correlated_column'])
+
+a) Smoothing by Rolling Mean
+df['smooth'] = df['sales'].rolling(window=3).mean()
+
+
+Simple: Smooth data by averaging neighbors.
+
+b) Removing special characters
+df['name'] = df['name'].str.replace('[^A-Za-z0-9 ]','', regex=True)
